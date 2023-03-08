@@ -1,11 +1,13 @@
 package com.ories.service.customer;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Controller
 @ResponseBody
@@ -22,9 +24,13 @@ public class CustomerController {
         return  this.service.all();
     }
 
-    @RequestMapping("/customers/{id}")
-    Customer byId(@PathVariable Integer id){
-        return  this.service.byId(id);
+    @RequestMapping("/customers/{name}")
+    Customer byName(@PathVariable String name){
+
+        Assert.state(Character.isUpperCase(name.charAt(0)), "the name must start with a capital letter");
+        return this.service.byName(name);
     }
+
+
 
 }

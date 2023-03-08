@@ -20,8 +20,8 @@ public class CustomerService {
     }
 
 
-    public  Customer byId(Integer id){
-        return (Customer) this.template.queryForObject("select * from customers where id=?", this.rowMapper, id);
+    public  Customer byName(String name){
+        return (Customer) this.template.queryForObject("select * from customers where name=?", this.rowMapper, name);
     }
 
     public Collection<Customer> all(){
